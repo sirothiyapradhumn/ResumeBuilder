@@ -2,11 +2,12 @@ import React from "react";
 import ResumePreview from './resumePreview'
 import  jsPDF  from "jspdf";
 import html2canvas from 'html2canvas';
+import { connect } from "react-redux";
 
    function Finalize(props) {
     let educationSection= props.educationSection
     let contactSection=props.contactSection
-    let documentd=props.document
+    let document=props.document
   
     const saveToDatabase= async()=>{
      
@@ -57,6 +58,13 @@ import html2canvas from 'html2canvas';
     
 }
 
+const mapStateToProps = (state) =>{
+  return{
+      document: state.document,
+      contactSection: state.contact,
+      educationSection: state.education
+  }
+}
 
 
-export default (Finalize)
+export default connect(mapStateToProps) (Finalize)
